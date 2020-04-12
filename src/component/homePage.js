@@ -9,9 +9,13 @@ import { withStyles } from '@material-ui/core/styles';
 const Styles = theme => ({
   root: {
       margin: theme.spacing(1.5),
-      width: '80ch',
-      marginLeft:'20%'
+      width: '60ch',
+      marginLeft:'30%'
   },
+  btn:{
+    margin: theme.spacing(1),
+    padding:theme.spacing(2),
+  }
 });
 
 
@@ -42,7 +46,7 @@ class HomePage extends Component {
       <div>
         <div className="App">
           <div className="Logo">
-            <img src={githubLogo} alt="logo" style={{paddingLeft: '22%',marginTop:"10%"}} />
+            <img src={githubLogo} alt="logo" style={{paddingLeft: '26%',marginTop:"10%"}} />
           </div>
           {/* <form className="example">
             <input type="text"
@@ -55,7 +59,7 @@ class HomePage extends Component {
         />
  
             {/* <button type="submit" onClick={this.handleSubmit}>Submit</button> */}
-            <Button variant="contained" color="primary" style={{height:"10%"}} onClick={this.handleSubmit}>
+            <Button variant="contained" color="primary" className={classes.btn} onClick={this.handleSubmit}>
             Submit
           </Button>
           
