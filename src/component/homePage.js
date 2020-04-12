@@ -3,6 +3,17 @@ import axios from 'axios';
 import githubLogo from './download1.png';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+// import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+
+const Styles = theme => ({
+  root: {
+      margin: theme.spacing(1.5),
+      width: '80ch',
+      marginLeft:'20%'
+  },
+});
+
 
 class HomePage extends Component {
   constructor(props) {
@@ -26,6 +37,7 @@ class HomePage extends Component {
     this.setState({ profile: response.data.items });
   }
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <div className="App">
@@ -38,14 +50,15 @@ class HomePage extends Component {
 
             /> */}
             <form>
-        <TextField id="outlined-search" label="Github Username" variant="outlined" 
+        <TextField id="outlined-search" label="Github Username" variant="outlined" className={classes.root}
         onChange={this.handleChange}
         />
-      
+ 
             {/* <button type="submit" onClick={this.handleSubmit}>Submit</button> */}
             <Button variant="contained" color="primary" style={{height:"10%"}} onClick={this.handleSubmit}>
             Submit
           </Button>
+          
           </form>
 
         </div>
@@ -54,4 +67,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default (withStyles)(Styles)(HomePage);
