@@ -39,8 +39,14 @@ class HomePage extends Component {
       },
     });
     console.log(response)
-    this.setState({ profile: response.data.items });
-  }
+    // this.setState({ profile: response.data.items });
+    const responseOfRepos = await axios.get(`https://api.github.com/users/${this.state.inputText}/repos`);
+    console.log(responseOfRepos)
+    this.setState({profile: response.data.items,Repos:responseOfRepos.data})
+    
+}
+    
+  
   render() {
     const { classes } = this.props;
     return (
