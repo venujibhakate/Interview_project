@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 const Styles = theme => ({
 	mainContainer: {
 		display: "flex",
-		marginLeft: '70px'
+		marginLeft: '20%'
 	},
 	image: {
 		width: '25ch',
@@ -28,27 +28,26 @@ const Styles = theme => ({
 	text: {
 		margin: theme.spacing(2),
 	},
-	repoInfo:{
+	repoInfo: {
 		display: "flex",
 	},
-	starCount:{
+	starCount: {
 		backgroundColor: '#eff3f6',
-		 color: '#24292e', 
-		 padding: '3px 10px 3px 10px', 
+		color: '#24292e',
+		padding: '3px 10px 3px 10px',
 	},
-	forkCount:{
+	forkCount: {
 		backgroundColor: '#eff3f6',
 		color: '#24292e',
 		marginLeft: '2px',
 		padding: '3px 10px 3px 10px'
 	},
-	watchersCount:{
+	watchersCount: {
 		backgroundColor: '#eff3f6',
 		color: '#24292e',
 		marginLeft: '2px',
 		padding: '3px 10px 3px 10px'
 	}
-
 })
 
 function Profile(props) {
@@ -79,7 +78,7 @@ function Profile(props) {
 			</div>
 			<div className="cardDiv">
 				{Repos.map(repo => (
-					<Card className={classes.root}>
+					<Card key="cardId" className={classes.root}>
 						<CardContent>
 							<Typography color="textSecondary" gutterBottom>
 								<a
@@ -90,18 +89,27 @@ function Profile(props) {
 									{repo.name}
 
 								</a>
+								<Typography>
+									<a
+										href={repo.html_url}
+										target="_blank"
+										style={{ fontSize: '15px', textDecoration: 'none'}}
+										rel="noopener noreferrer">
+										{repo.full_name}
+									</a>
+								</Typography>
 								<div className={classes.text}>
-									<Typography style={{ fontSize: '13px',}}>{repo.description}</Typography>
-									<Typography style={{ fontSize: '15px', display: 'inline-block',marginTop:'4%' }}>{repo.language}</Typography>
+									<Typography style={{ fontSize: '13px', }}>{repo.description}</Typography>
+									<Typography style={{ fontSize: '15px', display: 'inline-block', marginTop: '4%' }}>{repo.language}</Typography>
 								</div>
 								<div className={classes.repoInfo}>
-								<span className={classes.starCount}>
-									{repo.stargazers_count}Star
+									<span className={classes.starCount}>
+										{repo.stargazers_count}Star
 								</span>
-								<span className={classes.forkCount}>
-									{repo.forks_count}Fork
+									<span className={classes.forkCount}>
+										{repo.forks_count}Fork
 								</span>
-								<span className={classes.watchersCount}>
+									<span className={classes.watchersCount}>
 										{repo.watchers_count}Watchers
 								</span>
 								</div>

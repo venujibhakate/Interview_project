@@ -28,10 +28,8 @@ class HomePage extends Component {
       inputText: '',
       profile: '',
       Repos:'',
-      // publicRepo:'',
     }
   }
-  // handleChange = (e) => this.setState({ inputText: event.target.value })
   handleChange = e => {
   const regex =/[A-Za-z]/
   const re = /^[0-9\b]+$/;
@@ -58,9 +56,11 @@ class HomePage extends Component {
     // this.setState({ profile: response.data.items });
     const responseOfRepos = await axios.get(`https://api.github.com/users/${this.state.inputText}/repos`);
     console.log(responseOfRepos)
-    this.setState({profile: response.data.items,Repos:responseOfRepos.data})
+    this.setState({profile:response.data.items,Repos:responseOfRepos.data})
     
 }
+
+
     
   
   render() {
@@ -71,19 +71,12 @@ class HomePage extends Component {
           <div className="Logo">
             <img src={githubLogo} alt="logo" style={{paddingLeft: '26%',marginTop:"10%"}} />
           </div>
-          {/* <form className="example">
-            <input type="text"
-              name="search" onChange={this.handleChange}
-
-            /> */}
             <form>
         <TextField id="outlined-search" label="Github Username" variant="outlined" className={classes.root}
         onChange={this.handleChange}/>
-      
- 
-            {/* <button type="submit" onClick={this.handleSubmit}>Submit</button> */}
+    
 
-            <Button variant="contained" color="primary" className={classes.btn} onClick={this.handleSubmit}disabled={!this.state.inputText}>
+          <Button variant="contained" color="primary" className={classes.btn} onClick={this.handleSubmit}disabled={!this.state.inputText}>
             Submit
           </Button>
           
