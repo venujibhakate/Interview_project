@@ -81,7 +81,8 @@ class HomePage extends Component {
           </Button>
           
           </form>
-          {this.state.profile !== '' && (<Profile profile={this.state.profile} Repos={this.state.Repos} />)}
+          {/* {this.state.profile !== '' && (<Profile profile={this.state.profile} Repos={this.state.Repos} />)} */}
+          {this.state.profile !== '' && (<Profile {...this.state} />)}
 
         </div>
       </div>
