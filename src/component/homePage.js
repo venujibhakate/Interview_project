@@ -33,10 +33,10 @@ class HomePage extends Component {
   }
   // handleChange = (e) => this.setState({ inputText: event.target.value })
   handleChange = e => {
-  // const re = /^[0-9\b]+$/;
   const regex =/[A-Za-z]/
+  const re = /^[0-9\b]+$/;
         
-  if ((e.target.value === '' || regex.test(e.target.value))){
+  if ((e.target.value === '' || regex.test(e.target.value)) || (e.target.value === '' || re.test(e.target.value))){
      this.setState({text: e.target.value})
   
 
@@ -53,7 +53,7 @@ class HomePage extends Component {
     });
     console.log(response)
     // this.setState({ profile: response.data.items });
-    const responseOfRepos = await axios.get(`https://api.github.com/users/${this.state.inputText}/repos`);
+    const responseOfRepos = await axios.get(`https://api.github.com/users/${this.state.text}/repos`);
     console.log(responseOfRepos)
     this.setState({profile: response.data.items,Repos:responseOfRepos.data})
     
