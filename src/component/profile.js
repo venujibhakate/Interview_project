@@ -51,14 +51,12 @@ const Styles = theme => ({
 })
 
 function Profile(props) {
-	const { profile, classes, Repos } = props;
-	// const{classes}= this.props
+	const { classes, history } = props;
+	const data = history.location.state;
 	return (
-
-
 		<div className={classes.mainContainer}>
 			<div>
-				{profile.map(profile => (
+				{data.profile.map(profile => (
 					<Card key="id" className={classes.image}>
 						<CardContent>
 							<img className={classes.content} alt="thumbnail" src={profile.avatar_url} />
@@ -77,7 +75,7 @@ function Profile(props) {
 				))}
 			</div>
 			<div className="cardDiv">
-				{Repos.map(repo => (
+				{data.Repos.map(repo => (
 					<Card key="cardId" className={classes.root}>
 						<CardContent>
 							<Typography color="textSecondary" gutterBottom>

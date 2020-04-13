@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import HomePage from "./component/homePage";
 
+import Routers from './router'
 
-class App extends Component {
-  render() {
-    return (
-         <div>
-           <HomePage/>
-         </div>
-    )
-  }
-}
-  export default App;
+const App = () => (
+  <Routers></Routers>
+);
+
+export default App;
