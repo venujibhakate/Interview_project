@@ -37,7 +37,7 @@ class HomePage extends Component {
   const re = /^[0-9\b]+$/;
         
   if ((e.target.value === '' || regex.test(e.target.value)) || (e.target.value === '' || re.test(e.target.value))){
-     this.setState({text: e.target.value})
+     this.setState({inputText: e.target.value})
   
 
 }
@@ -46,14 +46,17 @@ class HomePage extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    console.log(this.state.inputText)
     const response = await axios.get('https://api.github.com/search/users', {
       params: {
-        q: this.state.inputText,
+          q: this.state.inputText,
+
       },
-    });
+
+  });
     console.log(response)
     // this.setState({ profile: response.data.items });
-    const responseOfRepos = await axios.get(`https://api.github.com/users/${this.state.text}/repos`);
+    const responseOfRepos = await axios.get(`https://api.github.com/users/${this.state.inputText}/repos`);
     console.log(responseOfRepos)
     this.setState({profile: response.data.items,Repos:responseOfRepos.data})
     
@@ -80,7 +83,7 @@ class HomePage extends Component {
  
             {/* <button type="submit" onClick={this.handleSubmit}>Submit</button> */}
 
-            <Button variant="contained" color="primary" className={classes.btn} onClick={this.handleSubmit}disabled={!this.state.text}>
+            <Button variant="contained" color="primary" className={classes.btn} onClick={this.handleSubmit}disabled={!this.state.inputText}>
             Submit
           </Button>
           

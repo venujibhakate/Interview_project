@@ -6,11 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 const Styles = theme => ({
+	mainContainer: {
+		display: "flex",
+		marginLeft: '70px'
+	},
 	image: {
 		width: '25ch',
-	},
-	mainDiv: {
-		marginLeft: '10%'
 	},
 	content: {
 		width: '22ch'
@@ -22,16 +23,42 @@ const Styles = theme => ({
 		width: '50ch',
 		marginLeft: '30%',
 		margin: theme.spacing(2),
+		padding: theme.spacing(4)
+	},
+	text: {
+		margin: theme.spacing(2),
+	},
+	repoInfo:{
+		display: "flex",
+	},
+	starCount:{
+		backgroundColor: '#eff3f6',
+		 color: '#24292e', 
+		 padding: '3px 10px 3px 10px', 
+	},
+	forkCount:{
+		backgroundColor: '#eff3f6',
+		color: '#24292e',
+		marginLeft: '2px',
+		padding: '3px 10px 3px 10px'
+	},
+	watchersCount:{
+		backgroundColor: '#eff3f6',
+		color: '#24292e',
+		marginLeft: '2px',
+		padding: '3px 10px 3px 10px'
 	}
+
 })
 
 function Profile(props) {
 	const { profile, classes, Repos } = props;
 	// const{classes}= this.props
 	return (
-		<div>
 
-			<div className={classes.mainDiv}>
+
+		<div className={classes.mainContainer}>
+			<div>
 				{profile.map(profile => (
 					<Card key="id" className={classes.image}>
 						<CardContent>
@@ -42,17 +69,15 @@ function Profile(props) {
 									View Profile
 								</Button>
 							</a>
-							<Typography style={{ fontSize: '40' }}>{profile.login}</Typography>
-							<Typography style={{ fontSize: '30', color: '#666' }}>{profile.login}</Typography>
+							<Typography >{profile.login}</Typography>
+							<Typography style={{ color: '#666' }}>{profile.login}</Typography>
 						</CardContent>
 
 					</Card>
 
 				))}
-
-
 			</div>
-			<div>
+			<div className="cardDiv">
 				{Repos.map(repo => (
 					<Card className={classes.root}>
 						<CardContent>
@@ -65,20 +90,21 @@ function Profile(props) {
 									{repo.name}
 
 								</a>
-								<Typography style={{ fontSize: '13px' }}>{repo.description}</Typography>
-								<Typography style={{ fontSize: '15px', display: 'inline-block' }}>{repo.language}</Typography>
-								<span style={{ backgroundColor: '#eff3f6', color: '#24292e', padding: '3px 10px 3px 10px', marginLeft: '5%' }}>
-									{repo.stargazers_count}star
+								<div className={classes.text}>
+									<Typography style={{ fontSize: '13px',}}>{repo.description}</Typography>
+									<Typography style={{ fontSize: '15px', display: 'inline-block',marginTop:'4%' }}>{repo.language}</Typography>
+								</div>
+								<div className={classes.repoInfo}>
+								<span className={classes.starCount}>
+									{repo.stargazers_count}Star
 								</span>
-								<span
-									style={{
-										backgroundColor: '#eff3f6',
-										color: '#24292e',
-										marginLeft: '100px',
-										padding: '3px 10px 3px 10px',
-									}}>
+								<span className={classes.forkCount}>
 									{repo.forks_count}Fork
-									</span>
+								</span>
+								<span className={classes.watchersCount}>
+										{repo.watchers_count}Watchers
+								</span>
+								</div>
 							</Typography>
 						</CardContent>
 					</Card>
