@@ -27,9 +27,22 @@ class HomePage extends Component {
     this.state = {
       inputText: '',
       profile: '',
+      Repos:'',
+      // publicRepo:'',
     }
   }
-  handleChange = (event) => this.setState({ inputText: event.target.value })
+  // handleChange = (e) => this.setState({ inputText: event.target.value })
+  handleChange = e => {
+  // const re = /^[0-9\b]+$/;
+  const regex =/[A-Za-z]/
+        
+  if ((e.target.value === '' || regex.test(e.target.value))){
+     this.setState({text: e.target.value})
+  
+
+}
+}
+
 
   handleSubmit = async e => {
     e.preventDefault();
@@ -62,17 +75,17 @@ class HomePage extends Component {
             /> */}
             <form>
         <TextField id="outlined-search" label="Github Username" variant="outlined" className={classes.root}
-        onChange={this.handleChange}
-        />
+        onChange={this.handleChange}/>
+      
  
             {/* <button type="submit" onClick={this.handleSubmit}>Submit</button> */}
 
-            <Button variant="contained" color="primary" className={classes.btn} onClick={this.handleSubmit}>
+            <Button variant="contained" color="primary" className={classes.btn} onClick={this.handleSubmit}disabled={!this.state.text}>
             Submit
           </Button>
           
           </form>
-          {this.state.profile !== '' && (<Profile profile={this.state.profile}/>)}
+          {this.state.profile !== '' && (<Profile profile={this.state.profile} Repos={this.state.Repos} />)}
 
         </div>
       </div>
