@@ -28,6 +28,7 @@ class HomePage extends Component {
       inputText: '',
       profile: '',
       Repos:'',
+      isProfileData:false
     }
   }
   handleChange = e => {
@@ -44,7 +45,6 @@ class HomePage extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    console.log(this.state.inputText)
     const response = await axios.get('https://api.github.com/search/users', {
       params: {
           q: this.state.inputText,
@@ -56,7 +56,7 @@ class HomePage extends Component {
     // this.setState({ profile: response.data.items });
     const responseOfRepos = await axios.get(`https://api.github.com/users/${this.state.inputText}/repos`);
     console.log(responseOfRepos)
-    this.setState({profile:response.data.items,Repos:responseOfRepos.data})
+    this.setState({profile:response.data.items,Repos:responseOfRepos.data ,isProfileData:true})
     
 }
 
@@ -67,6 +67,7 @@ class HomePage extends Component {
     const { classes } = this.props;
     return (
       <div>
+        {!this.state.isProfileData ?
         <div className="App">
           <div className="Logo">
             <img src={githubLogo} alt="logo" style={{paddingLeft: '26%',marginTop:"10%"}} />
@@ -81,11 +82,13 @@ class HomePage extends Component {
           </Button>
           
           </form>
-          {/* {this.state.profile !== '' && (<Profile profile={this.state.profile} Repos={this.state.Repos} />)} */}
-          {this.state.profile !== '' && (<Profile {...this.state} />)}
-
+          </div> : 
+        
+          <Profile {...this.state} />
+        }
         </div>
-      </div>
+
+     
     )
   }
 }

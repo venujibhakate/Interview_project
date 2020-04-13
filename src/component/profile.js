@@ -78,7 +78,7 @@ function Profile(props) {
 			</div>
 			<div className="cardDiv">
 				{Repos.map(repo => (
-					<Card key="cardId" className={classes.root}>
+					<Card className={classes.root}>
 						<CardContent>
 							<Typography color="textSecondary" gutterBottom>
 								<a
