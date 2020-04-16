@@ -1,15 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import HomePage from "./component/homePage";
 
+import AppRouter from './component/route'
 
-class App extends Component {
-  render() {
-    return (
-         <div>
-           <HomePage/>
-         </div>
-    )
-  }
-}
-  export default App;
+const App = () => (
+  <AppRouter></AppRouter>
+);
+
+export default App;

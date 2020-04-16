@@ -4,6 +4,10 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
+import { IconButton } from "@material-ui/core";
 
 const Styles = theme => ({
 	mainContainer: {
@@ -51,12 +55,14 @@ const Styles = theme => ({
 })
 
 function Profile(props) {
-	const { classes, history } = props;
-	const data = history.location.state;
+	const { profile, classes, Repos } = props;
+	// const{classes}= this.props
 	return (
+
+
 		<div className={classes.mainContainer}>
 			<div>
-				{data.profile.map(profile => (
+				{profile.map(profile => (
 					<Card key="id" className={classes.image}>
 						<CardContent>
 							<img className={classes.content} alt="thumbnail" src={profile.avatar_url} />
@@ -75,8 +81,8 @@ function Profile(props) {
 				))}
 			</div>
 			<div className="cardDiv">
-				{data.Repos.map(repo => (
-					<Card key="cardId" className={classes.root}>
+				{Repos.map(repo => (
+					<Card className={classes.root}>
 						<CardContent>
 							<Typography color="textSecondary" gutterBottom>
 								<a
